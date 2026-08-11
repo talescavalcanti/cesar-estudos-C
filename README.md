@@ -4,7 +4,7 @@
 ![Haskell](https://img.shields.io/badge/Haskell-5e5086?style=for-the-badge&logo=haskell&logoColor=white)
 ![CESAR School](https://img.shields.io/badge/CESAR_School-2026.2-FF6600?style=for-the-badge)
 
-Repositório destina aos estudos da disciplina de **Programação Imperativa e Funcional** do curso Tecnológico em Análise e Desenvolvimento de Sistemas (ADS) da **CESAR School** (Turma ADS20262_2A - Semestre 2026.2).
+Repositório destinado aos estudos da disciplina de **Programação Imperativa e Funcional** do curso Tecnológico em Análise e Desenvolvimento de Sistemas (ADS) da **CESAR School** (Turma ADS20262_2A - Semestre 2026.2).
 
 ## 👨‍🏫 Docente
 **Prof. Danilo Farias Soares da Silva**
