@@ -1,5 +1,3 @@
-/*Questao 26 - Pinheiro de Natal estilizado com enfeites (*, o, +)*/
-
 #include <stdio.h>
 #include <stdlib.h>
 

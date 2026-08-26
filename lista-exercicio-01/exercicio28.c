@@ -1,5 +1,3 @@
-/*Questao 28 - Media aritmetica de tres valores inteiros (double, 2 casas decimais)*/
-
 #include <stdio.h>
 #include <stdlib.h>
 

@@ -1,5 +1,3 @@
-/*Questao 18 - Tabela de precos alinhada a direita*/
-
 #include <stdio.h>
 #include <stdlib.h>
 

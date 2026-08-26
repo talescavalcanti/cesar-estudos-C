@@ -1,13 +1,3 @@
-/*Questao 22 - Carro e caminhonete com caracteres de bloco CP437*/
-
-/*
-Mapeamento usado: \xDC = ▄ (meio bloco inferior), \xDB = █ (bloco cheio),
-\xDF = ▀ (meio bloco superior), 'O' = roda.
-
-Nota: assim como na Questao 20, a saida so aparece correta em console CP437
-(cmd.exe / Windows Terminal); em terminais UTF-8 os bytes aparecem como mojibake.
-*/
-
 #include <stdio.h>
 #include <windows.h>
 

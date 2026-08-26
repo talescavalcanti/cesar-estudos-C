@@ -1,5 +1,3 @@
-/*Questao 25 - Letra C ampliada com uma unica chamada de printf()*/
-
 #include <stdio.h>
 #include <stdlib.h>
 

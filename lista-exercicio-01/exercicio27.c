@@ -1,5 +1,3 @@
-/*Questao 27 - Converte segundos em horas, minutos e segundos*/
-
 #include <stdio.h>
 #include <stdlib.h>
 

@@ -1,5 +1,3 @@
-/*Questao 19 - Unica chamada de printf() com tabulacao em cascata*/
-
 #include <stdio.h>
 #include <windows.h>
 
