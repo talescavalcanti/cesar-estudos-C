@@ -18,21 +18,6 @@ Repositório destinado aos estudos da disciplina de **Programação Imperativa e
 * Compreender os princípios fundamentais da programação funcional, desenvolvendo a capacidade de resolver problemas de forma declarativa em Haskell.
 * Entender as características, vantagens e desvantagens de cada paradigma na resolução de problemas computacionais.
 
-## 📅 Estrutura do Repositório (Cronograma)
-
-### 📁 Unidade 1: Programação Imperativa (C)
-- `01_introducao/`: Ambiente de desenvolvimento e "Hello World".
-- `02_decisao_repeticao/`: `if/else`, `switch`, `while`, `for`.
-- `03_estruturas_dados/`: Vetores, matrizes e strings.
-- `04_funcoes/`: Modularização, escopo e passagem de parâmetros.
-- `05_ponteiros_memoria/`: Aritmética de ponteiros e alocação dinâmica (`malloc`, `free`).
-
-### 📁 Unidade 2: Programação Funcional (Haskell)
-- `06_intro_haskell/`: GHCi, listas e tuplas.
-- `07_tipos_classes/`: Sistema de tipos em Haskell.
-- `08_polimorfismo/`: Funções polimórficas (ex: função `id`).
-- `09_alta_ordem/`: Funções de alta ordem (`map`, `fold`).
-- `10_recursao_adts/`: Funções recursivas e Tipos de Dados Algébricos.
 
 ## ⚙️ Ferramentas Utilizadas
 - **C:** Compilador GCC, IDE recomendada (VS Code, CLion, etc.)
