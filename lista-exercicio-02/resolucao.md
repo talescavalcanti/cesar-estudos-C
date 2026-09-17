@@ -1,26 +1,22 @@
-# Lista de Exercícios — Capítulo 2 — Código das Questões
+# Resolução — Lista de Exercícios Capítulo 2 — PIF
 
 ## Questão 01
 
-```c
-#include <stdio.h>
-#include <math.h>
+**a)** O valor exibido será `2`.
 
-int main(void) {
-    int valor_inteiro;
-    double valor = 2.97;
+**b)** Isso acontece porque `2.97` é um valor de ponto flutuante, mas está sendo armazenado em uma variável do tipo `int`. Ao fazer essa conversão, a parte decimal é descartada. Esse processo é uma conversão implícita de tipo e, nesse caso, ocorre truncamento.
 
-    valor_inteiro = valor;
+**c)** Para manter a precisão, o valor deve ser armazenado em uma variável `float` ou `double`. Se a intenção for arredondar, o programador pode usar funções como `round()`, `floor()` ou `ceil()` da biblioteca `<math.h>`, dependendo do comportamento desejado.
 
-    printf("Valor armazenado no int: %d\n", valor_inteiro);
-    printf("Valor mantendo a precisao: %.2f\n", valor);
-    printf("Arredondado: %.0f\n", round(valor));
-
-    return 0;
-}
-```
+---
 
 ## Questão 02
+
+**a)** A biblioteca `<conio.h>` não faz parte do padrão ANSI C. Ela é específica de alguns compiladores e sistemas, principalmente ambientes antigos do DOS e Windows. Por isso, funções como `getch()` e `getche()` podem não existir em Linux, macOS ou outros ambientes modernos, reduzindo a portabilidade do programa.
+
+**b)** As funções padrão mais comuns são `getchar()` para ler um caractere e `putchar()` para exibir um caractere. Também podem ser usadas `fgetc()` e `fputc()`.
+
+**c)**
 
 ```c
 #include <stdio.h>
@@ -28,21 +24,19 @@ int main(void) {
 int main(void) {
     int caractere;
 
-    printf("Digite um caractere: ");
-
     do {
         caractere = getchar();
-    } while (caractere == '\n');
+    } while (caractere == '\n' || caractere == '\r');
 
     if (caractere != EOF) {
-        printf("Caractere lido: ");
-        putchar(caractere);
-        putchar('\n');
+        printf("Caractere lido: %c\n", caractere);
     }
 
     return 0;
 }
 ```
+
+---
 
 ## Questão 03
 
@@ -50,97 +44,73 @@ int main(void) {
 #include <stdio.h>
 
 int main(void) {
-    int valor;
+    int numero;
 
     printf("Digite um numero inteiro: ");
-    scanf("%d", &valor);
+    scanf("%d", &numero);
 
     printf("Decimal: %d | Hexadecimal: %x | Octal: %o | ASCII: %c\n",
-           valor,
-           (unsigned int)valor,
-           (unsigned int)valor,
-           valor);
+           numero, numero, numero, numero);
 
     return 0;
 }
 ```
+
+---
 
 ## Questão 04
 
-```c
-#include <stdio.h>
+Os valores começam como `a = 1`, `b = 2`, `c = 3` e `d = 4`.
 
-int main(void) {
-    int a = 1, b = 2, c = 3, d = 4;
+Na primeira operação, `a += b + c`, temos `a = 1 + 2 + 3`, então `a = 6`.
 
-    a += b + c;
-    printf("1) a = %d, b = %d, c = %d, d = %d\n", a, b, c, d);
+Na segunda operação, `b *= c = d + 2`, primeiro `c` recebe `4 + 2`, ficando com `6`. Depois, `b` é multiplicado por `6`, então `b = 12`.
 
-    b *= c = d + 2;
-    printf("2) a = %d, b = %d, c = %d, d = %d\n", a, b, c, d);
+Na operação `d %= a + a + a`, temos `d %= 18`. Como o resto de `4 / 18` é `4`, o valor de `d` continua sendo `4`.
 
-    d %= a + a + a;
-    printf("3) a = %d, b = %d, c = %d, d = %d\n", a, b, c, d);
+Na operação `d -= c -= b -= a`, a avaliação ocorre da direita para a esquerda. Primeiro `b = 12 - 6`, ficando `6`. Depois `c = 6 - 6`, ficando `0`. Por fim, `d = 4 - 0`, continuando `4`.
 
-    d -= c -= b -= a;
-    printf("4) a = %d, b = %d, c = %d, d = %d\n", a, b, c, d);
+Na última operação, `a += b += c += 7`, novamente a avaliação acontece da direita para a esquerda. Primeiro `c = 0 + 7`, então `c = 7`. Depois `b = 6 + 7`, então `b = 13`. Por fim `a = 6 + 13`, então `a = 19`.
 
-    a += b += c += 7;
-    printf("5) a = %d, b = %d, c = %d, d = %d\n", a, b, c, d);
+Os valores finais são:
 
-    return 0;
-}
-```
+`a = 19`, `b = 13`, `c = 7` e `d = 4`.
+
+---
 
 ## Questão 05
 
-```c
-#include <stdio.h>
+**a)** `1`, porque `1 < 2 + 3`, ou seja, `1 < 5`.
 
-int main(void) {
-    int i = 1, j = 2, k = 3, n = 2;
-    float x = 3.3f, y = 4.4f;
+**b)** `0`, porque `2 * 1 - 7 = -5` e `2 - 8 = -6`. Logo, `-5 <= -6` é falso.
 
-    printf("a) %d\n", i < j + 3);
-    printf("b) %d\n", 2 * i - 7 <= j - 8);
-    printf("c) %d\n", -x + y >= 2.0f * y);
-    printf("d) %d\n", x == y);
-    printf("e) %d\n", !(n - j));
-    printf("f) %d\n", !n - j);
-    printf("g) %d\n", i && j && k);
-    printf("h) %d\n", i || j - 3 && k);
-    printf("i) %d\n", i < j && 2 >= k);
-    printf("j) %d\n", i == 2 || j == 4 || k == 5);
+**c)** `0`, porque `-3.3 + 4.4 = 1.1` e `2.0 * 4.4 = 8.8`. Logo, `1.1 >= 8.8` é falso.
 
-    return 0;
-}
-```
+**d)** `0`, porque `3.3` é diferente de `4.4`.
+
+**e)** `1`, porque `n - j = 2 - 2 = 0` e `!0` resulta em verdadeiro.
+
+**f)** A expressão produz numericamente `-2`, porque `!n` vale `0` e depois é feito `0 - 2`. Como `-2` é diferente de zero, ele é considerado verdadeiro quando usado em um contexto lógico.
+
+**g)** `1`, porque `i`, `j` e `k` são todos diferentes de zero e, portanto, verdadeiros.
+
+**h)** `1`. Primeiro `j - 3` resulta em `-1`. Como `-1` e `k` são diferentes de zero, `j - 3 && k` resulta em verdadeiro. Depois `i || 1` também resulta em verdadeiro.
+
+**i)** `0`, porque `i < j` é verdadeiro, mas `2 >= k` é falso. Verdadeiro `&&` falso resulta em falso.
+
+**j)** `0`, porque `i == 2`, `j == 4` e `k == 5` são todas expressões falsas.
+
+---
 
 ## Questão 06
 
-```c
-#include <stdio.h>
+**a)** No incremento prefixado, a variável é incrementada antes de seu valor ser utilizado. Assim, em `int x = ++n`, `n` passa de `5` para `6` e depois `6` é atribuído a `x`. O resultado será `n = 6` e `x = 6`.
 
-int main(void) {
-    int n = 5;
-    int x = ++n;
+No incremento pós-fixado, o valor atual é utilizado primeiro e o incremento ocorre em seguida. Em `int y = m++`, o valor `5` é atribuído a `y` e depois `m` passa para `6`. O resultado será `m = 6` e `y = 5`.
 
-    printf("Trecho A: n = %d, x = %d\n", n, x);
+**b)** A instrução modifica `n` com `n++` e também lê o valor de `n` em outros argumentos da mesma chamada de `printf()`. A linguagem C não define uma ordem fixa para a avaliação dos argumentos de uma função. Como a variável é lida e modificada sem uma sequência definida entre essas operações, o comportamento é indefinido e o resultado pode variar dependendo do compilador ou das otimizações utilizadas.
 
-    int m = 5;
-    int y = m++;
-
-    printf("Trecho B: m = %d, y = %d\n", m, y);
-
-    n = 5;
-
-    /* Evita: printf("%d\t%d\t%d\n", n, n + 1, n++); */
-    printf("%d\t%d\t%d\n", n, n + 1, n);
-    n++;
-
-    return 0;
-}
-```
+---
 
 ## Questão 07
 
@@ -158,6 +128,8 @@ int main(void) {
     return 0;
 }
 ```
+
+---
 
 ## Questão 08
 
@@ -182,6 +154,8 @@ int main(void) {
 }
 ```
 
+---
+
 ## Questão 09
 
 ```c
@@ -197,12 +171,14 @@ int main(void) {
     printf("Subtracao: %d\n", a - b);
     printf("Multiplicacao: %d\n", a * b);
 
-    /* O divisor precisa ser diferente de zero. */
-    printf("Divisao real: %.2f\n", (double)a / b);
+    /* Para evitar divisao por zero, o segundo numero deve ser diferente de zero. */
+    printf("Divisao: %.2f\n", (double)a / b);
 
     return 0;
 }
 ```
+
+---
 
 ## Questão 10
 
@@ -225,6 +201,8 @@ int main(void) {
 }
 ```
 
+---
+
 ## Questão 11
 
 ```c
@@ -245,15 +223,15 @@ int main(void) {
 }
 ```
 
+---
+
 ## Questão 12
 
 ```c
 #include <stdio.h>
 
 int main(void) {
-    int numero;
-    int antecessor;
-    int sucessor;
+    int numero, antecessor, sucessor;
 
     printf("Digite um numero inteiro: ");
     scanf("%d", &numero);
@@ -271,32 +249,36 @@ int main(void) {
 }
 ```
 
+---
+
 ## Questão 13
 
 ```c
 #include <stdio.h>
 
 int main(void) {
-    double lado;
-    double base_retangulo, altura_retangulo;
-    double base_triangulo, altura_triangulo;
+    double lado, base, altura;
+    double area_quadrado, area_retangulo, area_triangulo;
 
     printf("Digite o lado do quadrado: ");
     scanf("%lf", &lado);
 
-    printf("Digite a base e a altura do retangulo: ");
-    scanf("%lf %lf", &base_retangulo, &altura_retangulo);
+    printf("Digite a base e a altura: ");
+    scanf("%lf %lf", &base, &altura);
 
-    printf("Digite a base e a altura do triangulo: ");
-    scanf("%lf %lf", &base_triangulo, &altura_triangulo);
+    area_quadrado = lado * lado;
+    area_retangulo = base * altura;
+    area_triangulo = (base * altura) / 2.0;
 
-    printf("Area do quadrado: %.2f\n", lado * lado);
-    printf("Area do retangulo: %.2f\n", base_retangulo * altura_retangulo);
-    printf("Area do triangulo: %.2f\n", (base_triangulo * altura_triangulo) / 2.0);
+    printf("Area do quadrado: %.2f\n", area_quadrado);
+    printf("Area do retangulo: %.2f\n", area_retangulo);
+    printf("Area do triangulo retangulo: %.2f\n", area_triangulo);
 
     return 0;
 }
 ```
+
+---
 
 ## Questão 14
 
@@ -305,8 +287,7 @@ int main(void) {
 #include <math.h>
 
 int main(void) {
-    double a, b, c;
-    double p, area;
+    double a, b, c, p, area;
 
     printf("Digite os tres lados do triangulo: ");
     scanf("%lf %lf %lf", &a, &b, &c);
@@ -319,6 +300,8 @@ int main(void) {
     return 0;
 }
 ```
+
+---
 
 ## Questão 15
 
@@ -342,6 +325,8 @@ int main(void) {
 }
 ```
 
+---
+
 ## Questão 16
 
 ```c
@@ -349,25 +334,25 @@ int main(void) {
 #include <math.h>
 
 int main(void) {
-    double altura_degrau_cm;
-    double altura_total_m;
-    double altura_total_cm;
-    int quantidade_degraus;
+    double altura_degrau_cm, altura_total_m, altura_total_cm;
+    int degraus;
 
     printf("Digite a altura de cada degrau em centimetros: ");
     scanf("%lf", &altura_degrau_cm);
 
-    printf("Digite a altura total em metros: ");
+    printf("Digite a altura total desejada em metros: ");
     scanf("%lf", &altura_total_m);
 
     altura_total_cm = altura_total_m * 100.0;
-    quantidade_degraus = (int)ceil(altura_total_cm / altura_degrau_cm);
+    degraus = (int)ceil(altura_total_cm / altura_degrau_cm);
 
-    printf("Numero minimo de degraus: %d\n", quantidade_degraus);
+    printf("Numero minimo de degraus: %d\n", degraus);
 
     return 0;
 }
 ```
+
+---
 
 ## Questão 17
 
@@ -376,9 +361,7 @@ int main(void) {
 
 int main(void) {
     const double PI = 3.141593;
-    double raio;
-    double area;
-    double circunferencia;
+    double raio, area, circunferencia;
 
     printf("Digite o raio do circulo: ");
     scanf("%lf", &raio);
@@ -393,6 +376,8 @@ int main(void) {
 }
 ```
 
+---
+
 ## Questão 18
 
 ```c
@@ -400,9 +385,7 @@ int main(void) {
 
 int main(void) {
     const double PI = 3.141593;
-    double raio;
-    double area;
-    double volume;
+    double raio, area, volume;
 
     printf("Digite o raio da esfera: ");
     scanf("%lf", &raio);
@@ -417,24 +400,22 @@ int main(void) {
 }
 ```
 
+---
+
 ## Questão 19
 
 ```c
 #include <stdio.h>
 
 int main(void) {
-    const double VALOR_DIA = 30.0;
-    const double TAXA_IR = 0.08;
-
     int dias;
-    double bruto, imposto, liquido;
+    double bruto, liquido;
 
-    printf("Digite a quantidade de dias trabalhados: ");
+    printf("Digite o numero de dias trabalhados: ");
     scanf("%d", &dias);
 
-    bruto = dias * VALOR_DIA;
-    imposto = bruto * TAXA_IR;
-    liquido = bruto - imposto;
+    bruto = dias * 30.0;
+    liquido = bruto - (bruto * 0.08);
 
     printf("Valor bruto: R$ %.2f\n", bruto);
     printf("Valor liquido: R$ %.2f\n", liquido);
@@ -443,6 +424,8 @@ int main(void) {
 }
 ```
 
+---
+
 ## Questão 20
 
 ```c
@@ -450,8 +433,7 @@ int main(void) {
 #include <math.h>
 
 int main(void) {
-    double lado_a, lado_b;
-    double hipotenusa;
+    double lado_a, lado_b, hipotenusa;
 
     printf("Digite os dois catetos: ");
     scanf("%lf %lf", &lado_a, &lado_b);
@@ -464,6 +446,8 @@ int main(void) {
 }
 ```
 
+---
+
 ## Questão 21
 
 ```c
@@ -475,13 +459,14 @@ int main(void) {
     printf("Digite um caractere: ");
     scanf(" %c", &caractere);
 
-    /* O numero representa o codigo ASCII associado ao caractere. */
-    printf("Caractere: %c\n", caractere);
-    printf("Codigo ASCII: %d\n", (unsigned char)caractere);
+    /* O numero exibido representa o codigo ASCII associado ao caractere. */
+    printf("Codigo ASCII: %d\n", (int)caractere);
 
     return 0;
 }
 ```
+
+---
 
 ## Questão 22
 
@@ -489,13 +474,12 @@ int main(void) {
 #include <stdio.h>
 
 int main(void) {
-    char maiuscula;
-    char minuscula;
+    char maiuscula, minuscula;
 
     printf("Digite uma letra maiuscula: ");
     scanf(" %c", &maiuscula);
 
-    minuscula = maiuscula - 'A' + 'a';
+    minuscula = maiuscula + ('a' - 'A');
 
     printf("Letra minuscula: %c\n", minuscula);
 
@@ -503,44 +487,38 @@ int main(void) {
 }
 ```
 
+---
+
 ## Questão 23
 
 ```c
 #include <stdio.h>
 
 int main(void) {
-    int hora_inicio;
-    int minuto_inicio;
-    int segundo_inicio;
-    int duracao_segundos;
+    int horas, minutos, segundos;
+    int duracao;
     int total_segundos;
-    int hora_final;
-    int minuto_final;
-    int segundo_final;
 
     printf("Digite hora, minuto e segundo do inicio: ");
-    scanf("%d %d %d", &hora_inicio, &minuto_inicio, &segundo_inicio);
+    scanf("%d %d %d", &horas, &minutos, &segundos);
 
     printf("Digite a duracao em segundos: ");
-    scanf("%d", &duracao_segundos);
+    scanf("%d", &duracao);
 
-    total_segundos = hora_inicio * 3600
-                   + minuto_inicio * 60
-                   + segundo_inicio
-                   + duracao_segundos;
+    total_segundos = horas * 3600 + minutos * 60 + segundos + duracao;
+    total_segundos %= 86400;
 
-    total_segundos %= 24 * 3600;
+    horas = total_segundos / 3600;
+    minutos = (total_segundos % 3600) / 60;
+    segundos = total_segundos % 60;
 
-    hora_final = total_segundos / 3600;
-    total_segundos %= 3600;
-    minuto_final = total_segundos / 60;
-    segundo_final = total_segundos % 60;
-
-    printf("%02d:%02d:%02d\n", hora_final, minuto_final, segundo_final);
+    printf("Horario de termino: %02d:%02d:%02d\n", horas, minutos, segundos);
 
     return 0;
 }
 ```
+
+---
 
 ## Questão 24
 
@@ -548,8 +526,7 @@ int main(void) {
 #include <stdio.h>
 
 int main(void) {
-    double km_h;
-    double m_s;
+    double km_h, m_s;
 
     printf("Digite a velocidade em km/h: ");
     scanf("%lf", &km_h);
@@ -562,31 +539,30 @@ int main(void) {
 }
 ```
 
+---
+
 ## Questão 25
 
 ```c
 #include <stdio.h>
 
 int main(void) {
-    double salario_base;
-    double gratificacao;
-    double imposto;
-    double salario_liquido;
+    double salario_base, gratificacao, imposto, salario_liquido;
 
-    printf("Digite o salario-base: R$ ");
+    printf("Digite o salario-base: ");
     scanf("%lf", &salario_base);
 
     gratificacao = salario_base * 0.05;
     imposto = salario_base * 0.07;
     salario_liquido = salario_base + gratificacao - imposto;
 
-    printf("Gratificacao: R$ %.2f\n", gratificacao);
-    printf("Imposto: R$ %.2f\n", imposto);
     printf("Salario liquido: R$ %.2f\n", salario_liquido);
 
     return 0;
 }
 ```
+
+---
 
 ## Questão 26
 
@@ -594,32 +570,30 @@ int main(void) {
 #include <stdio.h>
 
 int main(void) {
-    double comprimento;
-    double largura;
-    double preco_metro;
-    double perimetro;
-    double metros_arame;
-    double custo_total;
+    double comprimento, largura, preco_metro;
+    double perimetro, metros_arame, custo_total;
 
-    printf("Digite o comprimento do terreno em metros: ");
+    printf("Digite o comprimento do terreno: ");
     scanf("%lf", &comprimento);
 
-    printf("Digite a largura do terreno em metros: ");
+    printf("Digite a largura do terreno: ");
     scanf("%lf", &largura);
 
-    printf("Digite o preco do metro de arame: R$ ");
+    printf("Digite o preco do metro de arame: ");
     scanf("%lf", &preco_metro);
 
     perimetro = 2.0 * (comprimento + largura);
     metros_arame = perimetro * 3.0;
     custo_total = metros_arame * preco_metro;
 
-    printf("Metros de arame: %.2f m\n", metros_arame);
+    printf("Metros de arame: %.2f\n", metros_arame);
     printf("Custo total: R$ %.2f\n", custo_total);
 
     return 0;
 }
 ```
+
+---
 
 ## Questão 27
 
@@ -645,31 +619,30 @@ int main(void) {
 }
 ```
 
+---
+
 ## Questão 28
 
 ```c
 #include <stdio.h>
 
 int main(void) {
-    double horas_normais;
-    double horas_extras;
-    double salario_bruto;
-    double imposto;
+    double horas_normais, horas_extras;
+    double salario_bruto, imposto;
 
-    printf("Digite o total anual de horas normais: ");
+    printf("Digite o total de horas normais trabalhadas no ano: ");
     scanf("%lf", &horas_normais);
 
-    printf("Digite o total anual de horas extras: ");
+    printf("Digite o total de horas extras trabalhadas no ano: ");
     scanf("%lf", &horas_extras);
 
     salario_bruto = horas_normais * 10.0 + horas_extras * 15.0;
-
     imposto = salario_bruto > 12000.0
-        ? (salario_bruto - 12000.0) * 0.10
-        : 0.0;
+                  ? (salario_bruto - 12000.0) * 0.10
+                  : 0.0;
 
     printf("Salario anual bruto: R$ %.2f\n", salario_bruto);
-    printf("Imposto devido: R$ %.2f\n", imposto);
+    printf("Imposto a pagar: R$ %.2f\n", imposto);
 
     return 0;
 }
